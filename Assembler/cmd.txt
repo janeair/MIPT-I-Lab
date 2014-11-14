@@ -1,0 +1,14 @@
+push  0
+pop   1
+add   2
+mul   3
+sub   4
+div   5
+pusha 6
+pushb 7
+popa  8
+popb  9
+pushax 10
+pushbx 11
+jump   -1
+label  -2
