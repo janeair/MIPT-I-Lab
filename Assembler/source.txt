@@ -1,0 +1,16 @@
+push 1
+add
+hey:
+push 23
+mul
+jump hey
+pusha
+comeon:
+popa
+jump  come
+popb
+push   15
+jump   haha
+pushax   2
+haha:  
+pop
