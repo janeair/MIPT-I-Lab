@@ -38,6 +38,12 @@ void list_sort(dlist_t* dlist);
 void list_push(dlist_t* dlist, const char* data, int code);
 // PUSHES NEW RECORD (NAME + SOURCE) IN THE LIST
 
+int list_pop (dlist_t* dlist, const char* data);
+// DELETES RECORD WITH NAME "DATA" FROM THE LIST
+// RETURNS:
+// 0 : EVERYTHING IS OK
+// 1 : NAME NOT FOUND
+
 int list_search(dlist_t* dlist, const char* data);
 // CHECKS WHETHER THE LIST HAS THIS NAME
 // RETURNS:

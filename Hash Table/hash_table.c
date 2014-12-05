@@ -30,6 +30,33 @@ void table_push (hashtable_t* table, const char* data, int code)
     return;
 }
 
+void table_pop (hashtable_t* table, const char* data)
+{
+    assert(table!=0);
+    int hashcode = hashf(data);
+    assert(hashcode >= 0 && hashcode < 100);
+    int error = list_pop(table->dlist[hashcode], data);
+    if (error == 1)
+        printf("- Sorry, this name not found -\n");
+    return;
+}
+
+void table_fpush (hashtable_t* table, const char* filepath)
+{
+    FILE* source;
+    source = fopen(filepath, "r");
+    assert(source!=0);
+    while( !feof(source) )
+    {
+        char* name = (char*)calloc(30,sizeof(char));
+        fscanf(source, "%s", name);
+        table_push(table, name, 0);
+        free(name);
+    }
+    fclose(source);
+    return;
+}
+
 int table_search (hashtable_t* table, const char* data)
 {
     assert(table!=0);
@@ -57,7 +84,20 @@ void table_hashprint(hashtable_t* table, int hashcode)
     if (hashcode >= 0 && hashcode < 100)
         list_print(table->dlist[hashcode]);
     else
-        printf("- Wrong Hash Code -");
+        printf("- Wrong Hash Code -\n");
+    return;
+}
+
+void table_print(hashtable_t* table)
+{
+    assert(table!=0);
+    int i = 0;
+    for (i=0; i<100; i++)
+    if (table->dlist[i]->ListSize>0)
+    {
+        printf("hash -> %d\n", i);
+        list_print(table->dlist[i]);
+    }
     return;
 }
 

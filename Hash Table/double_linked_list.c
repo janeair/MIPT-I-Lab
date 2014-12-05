@@ -74,6 +74,42 @@ void list_push(dlist_t* dlist, const char* data, int code)
     return;
 }
 
+int list_pop (dlist_t* dlist, const char* data)
+{
+    assert(dlist!=0);
+    unit* current = dlist->head;
+    while (current!=0)
+    {
+        if (strcmp(current->name,data)==0)
+        {
+            if (current->next == 0 && current->prev == 0)
+                dlist->head = 0;
+            else
+                if (current->next == 0)
+                    current->prev->next = 0;
+                else if (current->prev == 0)
+                    {
+                        current->next->prev = 0;
+                        dlist->head = current->next;
+                    }
+                    else
+                    {
+                        current->next->prev = current->prev;
+                        current->prev->next = current->next;
+                    }
+            dlist->ListSize--;
+            assert(dlist->ListSize>=0);
+
+            free(current->name);
+            free(current);
+            return 0;
+        }
+        else
+            current = current->next;
+    }
+    return 1;
+}
+
 void list_print (dlist_t* dlist)
 {
     assert(dlist!=0);
@@ -91,6 +127,7 @@ int list_search(dlist_t* dlist, const char* data)
 {
     assert(dlist!=0);
     unit* current = dlist->head;
+    if (current == 0) return 0;
     do
     {
         if (strcmp(current->name, data) == 0) return current->source;

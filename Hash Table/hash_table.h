@@ -17,8 +17,14 @@ hashtable_t;
 hashtable_t* table_create (hashtable_t* table);
 // CREATES EMPTY HASH TABLE
 
+void table_fpush (hashtable_t* table, const char* filepath);
+// FILLS THE TABLE WITH RECORDS (NAME = WORD | CODE = 0) FROM THE FILE "FILEPATH"
+
 void table_push (hashtable_t* table, const char* data, int code);
 // PUSHES NEW RECORD (NAME + SOURCE) IN THE HASH TABLE ACCORDING TO ITS HASH
+
+void table_pop (hashtable_t* table, const char* data);
+// DELETES RECORD WITH NAME "DATA" FROM THE TABLE
 
 int table_search (hashtable_t* table, const char* data);
 // CHECKS WHETHER THE HASH TABLE HAS THIS NAME
@@ -39,6 +45,11 @@ int hashf (const char* data);
 
 void table_hashprint(hashtable_t* table, int hashcode);
 // PRINTS LIST FROM THE TABLE ACCORDING TO HASHCODE
+
+void table_print(hashtable_t* table);
+// PRINTS HASH TABLE AT ALL
+// FORMAT : HASH -> "HASHCODE"
+//          ELEMENTS (BELOW)
 
 void table_destroy (hashtable_t* table);
 // DESTROYS HASH TABLE AT ALL
