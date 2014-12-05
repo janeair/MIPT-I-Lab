@@ -7,9 +7,6 @@
 #include "tree.h"
 
 tree_t tree_create (tree_t tree, int source)
-
-// CREATE A TREE WITH A TOP NODE (DATA = SOURCE)
-
 {
     tree.current = (node*)calloc(1, sizeof(node));
     tree.current->up = NULL;
@@ -21,13 +18,6 @@ tree_t tree_create (tree_t tree, int source)
 }
 
 double tree_pick (const tree_t* tree, char path)
-
-// RETURNS DATA FROM NODE ON THE PATH
-// ARGUMENT PATH:
-// 'C' = CURRENT NODE
-// 'R' = RIGHT NODE
-// 'L' = LEFT NODE
-
 {
     assert(tree != 0);
     if (path == 'L' || path == 'l')
@@ -59,9 +49,6 @@ double tree_pick (const tree_t* tree, char path)
 }
 
 node* addleaf (const node* parent, int source)
-
-// ! PRIVATE METHOD ! (PARENT -> ADD_LEAVES)
-
 {
     node* leaf = (node*)calloc(1, sizeof(node));
     assert(leaf != 0);
@@ -73,10 +60,6 @@ node* addleaf (const node* parent, int source)
 }
 
 void add_leaves (const tree_t* tree, int lft_src, int rgt_src)
-
-// ADDS LEFT LEAF (DATA = LFT_SRC) AND RIGHT LEAF (DATA = RGT_SRC)
-// DON'T CHANGES CURRENT POINTER (TREE->CURRENT)
-
 {
     assert(tree != 0);
     if (tree->current->right != 0 || tree->current->left != 0)
@@ -89,9 +72,6 @@ void add_leaves (const tree_t* tree, int lft_src, int rgt_src)
 }
 
 void go_left (tree_t* tree)
-
-// MOVES TREE POINTER DEEP-LEFT
-
 {
     assert(tree != 0);
     if (tree->current == 0)
@@ -109,9 +89,6 @@ void go_left (tree_t* tree)
 }
 
 void go_right (tree_t* tree)
-
-// MOVES TREE POINTER DEEP-RIGHT
-
 {
     assert(tree != 0);
     if (tree->current == 0)
@@ -129,9 +106,6 @@ void go_right (tree_t* tree)
 }
 
 void go_up (tree_t* tree)
-
-// MOVES TREE POINTER UP-TO-PARENT
-
 {
     assert(tree != 0);
     if (tree->current == 0)
@@ -149,9 +123,6 @@ void go_up (tree_t* tree)
 }
 
 void go_ontop (tree_t* tree)
-
-// MOVES TREE POINTER UP-TO-TOP
-
 {
     while (tree->current->up != 0)
         go_up(tree);
@@ -163,9 +134,6 @@ void go_ontop (tree_t* tree)
 }
 
 int print_node(node* current)
-
-// ! PRIVATE METHOD ! (PARENT -> PRINT_TREE)
-
 {
     if (current != 0)
         printf("(%d",current->data);
@@ -186,9 +154,6 @@ int print_node(node* current)
 }
 
 void print_tree(const tree_t* tree)
-
-// PRINTS ALL NODES OF TREE (FROM THE BEGINNING)
-
 {
     int i;
     int err;
@@ -209,13 +174,6 @@ void print_tree(const tree_t* tree)
 }
 
 int node_clear (tree_t* tree)
-
-// TURNS CURRENT NODE TO A LEAF
-// DON'T CHANGES CURRENT POINTER (TREE->CURRENT)
-// RETURNS :
-// 0 - IF GOOD DONE
-// 1 - IF THIS NODE IS A LEAF
-
 {
     assert(tree != 0);
     if (tree->current->left != 0 && tree->current->right != 0)
@@ -234,9 +192,6 @@ int node_clear (tree_t* tree)
 }
 
 int node_destr (node* current)
-
-// ! PRIVATE METHOD ! (PARENT -> TREE_DESTR)
-
 {
     if (current->left != 0)
         node_destr(current->left);
@@ -250,9 +205,6 @@ int node_destr (node* current)
 }
 
 void tree_destr (tree_t* tree)
-
-// DELETES ALL NODES FROM TREE AND TREE AT ALL
-
 {
     int i;
     for (i=0; i<tree->deep; i++)

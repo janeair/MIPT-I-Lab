@@ -5,15 +5,15 @@
 #include <string.h>
 #include <assert.h>
 
-// TYPE OF LABEL
-
 typedef struct label_t
 {
     char* name;
     int point;
 }
 label_t;
+// TYPE OF LABEL
 
+// CODES OF COMMANDS (BELOW)
 enum
 {
     CPOP = 1,
@@ -53,9 +53,8 @@ enum
 
 label_t labels[100]; // ARRAY USING LABELS
 
-// CHECKS COMMAND TYPE
-
 int check_cmd (char* cmd)
+// CHECKS COMMAND TYPE
 {
     if ( strcmp(cmd,"POP") == 0) return CPOP;
     else if ( strcmp(cmd,"POPA") == 0) return CPOPA;
@@ -85,9 +84,8 @@ int check_cmd (char* cmd)
     else return ERROR;
 }
 
-// FINDS LABEL AND RETURNS LABEL PATH (COMMAND NUMBER)
-
 int find_label (const char* str, const int cur)
+// FINDS LABEL AND RETURNS LABEL PATH (COMMAND NUMBER)
 {
     int i;
     for (i=0; i<cur; i++)
@@ -102,8 +100,7 @@ void assembler(const char* pathin, const char* pathout)
     FILE* source;
     FILE* output;
 
-    //
-    char str[10];
+    char str[10]; // DECLARE WITH WHAT?
     int typecmd;
     int arg;
 

@@ -7,16 +7,13 @@
 #include "stack.h"
 #include "stack.c"
 
-// TYPE OF REGISTER
-
 typedef struct register_t
 {
     int data;
     int full;
 }
 register_t;
-
-// TYPE CPU
+// TYPE OF REGISTER
 
 typedef struct cpu_t
 {
@@ -25,11 +22,13 @@ typedef struct cpu_t
     stack_t cpu;
 }
 cpu_t;
+// STRUCT OF STACK CPU
 
 register_t clear (register_t reg)
 {
     reg.data = 0;
     reg.full = 0;
 }
+// CLEARS THE REGISTER
 
 #endif // STACK_CPU_H_INCLUDED

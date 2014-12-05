@@ -9,6 +9,7 @@ typedef struct unit
     struct unit *next;
 }
 unit;
+// STRUCT OF STACK ELEMENT
 
 typedef struct stack_t
 {
@@ -16,6 +17,7 @@ typedef struct stack_t
     int StackSize;
 }
 stack_t;
+// STRUCT OF STACK
 
 stack_t stack_create (stack_t stack);
 int stack_cmp (const stack_t* stack);
@@ -29,5 +31,7 @@ void sub (stack_t* stack);
 void sdiv (stack_t* stack);
 void sqr (stack_t* stack);
 void stack_destr (stack_t* stack);
+
+// FOR MORE INFORMATION PLEASE LOOK TO "STACK.H" AT STACK
 
 #endif STACK_H_INCLUDED

@@ -61,7 +61,7 @@ void stack_PRINT (const stack_t* stack)
     }
 }
 
-void push ( stack_t* stack, int source ) // push new element
+void push ( stack_t* stack, int source )
 {
     if ( stack_OK(stack) != 0 ) return;
     unit* pointer = (unit*) calloc(1, sizeof(unit));
@@ -79,7 +79,7 @@ void push ( stack_t* stack, int source ) // push new element
     stack->StackSize++;
 }
 
-double pop (stack_t* stack) // pop head element
+double pop (stack_t* stack)
 {
     int sourse;
     if ( stack_OK(stack) != 0 ) return 0.5;
