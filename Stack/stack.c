@@ -15,7 +15,7 @@ stack_t stack_create (stack_t stack)
 
 int stack_OK (const stack_t* stack)
 {
-    if (stack != 0 && stack->StackSize>=0 && (stack->HeadElement != 0 || stack->StackSize == 0) )
+    if (stack != 0 && stack->StackSize >= 0 && (stack->HeadElement != 0 || stack->StackSize == 0) )
         return 0;
     else if (stack == 0)
         {
@@ -49,7 +49,7 @@ double peek (stack_t* stack)
 
 void stack_PRINT (const stack_t* stack)
 {
-    int i;
+    assert(stack != 0);
     unit* pointer = stack->HeadElement;
     if ( stack_OK(stack) != 0 ) return;
     printf("Your Stack\n StackSize %d\n Elements -> ", stack->StackSize);
@@ -59,6 +59,7 @@ void stack_PRINT (const stack_t* stack)
         printf("%d ", pointer->numb);
         pointer = pointer->next;
     }
+    return;
 }
 
 void push ( stack_t* stack, int source )
@@ -77,6 +78,7 @@ void push ( stack_t* stack, int source )
     }
     stack->HeadElement = pointer;
     stack->StackSize++;
+    return;
 }
 
 double pop (stack_t* stack)
@@ -103,6 +105,7 @@ void add (stack_t* stack)
     data = pop(stack);
     assert (stack != 0);
     stack->HeadElement->numb+=data;
+    return;
 }
 
 void mul (stack_t* stack)
@@ -112,6 +115,7 @@ void mul (stack_t* stack)
     data = pop(stack);
     assert (stack != 0);
     stack->HeadElement->numb*=data;
+    return;
 }
 
 void stack_destr (stack_t* stack)
@@ -119,6 +123,7 @@ void stack_destr (stack_t* stack)
     while (stack->StackSize >= 0) pop (stack);
     stack->HeadElement = NULL;
     stack = NULL;
+    return;
 }
 
 #endif STACK_C_INCLUDED

@@ -20,16 +20,16 @@ int main ()
 
     // ARRAY OF COMMANDS
     int command[1000];
-    int curr=0;
-    int last_cmd=0;
+    int curr = 0;
+    int last_cmd = 0;
 
     // ASSEMLY (USES ASSEMBLER.H)
     assembler(pathin, pathout);
 
     source = fopen(pathout,"r");
-    assert(source!=0);
+    assert(source != 0);
     result = fopen(pathresult,"w");
-    assert(result!=0);
+    assert(result != 0);
 
     // CREATE STACK
     stack_cpu.cpu = stack_create(stack_cpu.cpu);
@@ -48,7 +48,7 @@ int main ()
 
     // EXECUTION
 
-    while( command[curr] != END && curr <= last_cmd)
+    while( command[curr] != END && curr <= last_cmd )
     {
         switch (command[curr])
         {

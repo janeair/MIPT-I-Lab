@@ -87,6 +87,7 @@ int check_cmd (char* cmd)
 int find_label (const char* str, const int cur)
 // FINDS LABEL AND RETURNS LABEL PATH (COMMAND NUMBER)
 {
+    assert(str != 0);
     int i;
     for (i=0; i<cur; i++)
         if ( strcmp(str, labels[i].name) == 0) return labels[i].point;
@@ -111,6 +112,11 @@ void assembler(const char* pathin, const char* pathout)
 
     // FIRST STEP
 
+    // CHEKING INPUT DATA
+
+    assert(pathin != 0);
+    assert(pathout != 0);
+
     source = fopen(pathin,"r");
     assert(source!=0);
 
@@ -118,7 +124,7 @@ void assembler(const char* pathin, const char* pathout)
     {
         fscanf( source, "%s", str);
         int len = strlen(str)-1;
-        if (str[len]==':')
+        if (str[len] == ':')
         {
             labels[cur_lbl].name = (char*)calloc(len+1,sizeof(char));
             assert(labels[cur_lbl].name != 0);
@@ -134,6 +140,7 @@ void assembler(const char* pathin, const char* pathout)
     int i;
     for (i = 0; i < cur_lbl; i++)
         printf("%d %s -> %d\n",i ,labels[i].name, labels[i].point);
+
      fclose(source);
 
     // SECOND STEP
@@ -161,16 +168,19 @@ void assembler(const char* pathin, const char* pathout)
                     int cmd_go = find_label(str, cur_lbl);
                     if (cmd_go != 0)
                         fprintf( output, "%d", cmd_go);
-                    else {
+                    else
+                    {
                         printf("Wrong Format of Label or Label Not Found\n");
-                        fprintf( output, "$0"); }
+                        fprintf( output, "$0");
+                    }
                 }
         if (typecmd != 0) fprintf( output, "\n");
     }
 
     fclose(source);
     fclose(output);
-    for (i=0; i<cur_lbl; i++)
+
+    for (i = 0; i < cur_lbl; i++)
         free(labels[i].name);
 }
 
