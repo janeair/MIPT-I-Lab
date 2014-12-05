@@ -6,14 +6,9 @@
 #include <assert.h>
 #include "double_linked_list.h"
 
-#define TSIZE 100
-
-const int tsize = 100;
-// SIZE OF HASH TABLE
-
 typedef struct hashtable_t
 {
-    dlist_t* dlist[TSIZE];
+    dlist_t* dlist[100];
     long counter;
 }
 hashtable_t;

@@ -9,7 +9,7 @@
 dlist_t* list_create(dlist_t* dlist)
 {
     dlist = (dlist_t*)calloc(1,sizeof(dlist_t));
-    assert(dlist != 0);
+    assert(dlist!=0);
     dlist->head = NULL;
     dlist->ListSize = 0;
     return dlist;
@@ -18,7 +18,7 @@ dlist_t* list_create(dlist_t* dlist)
 void list_change(unit* unit1, unit* unit2)
 {
     unit* temp = (unit*)calloc(1,sizeof(unit));
-    assert(temp != 0);
+    assert(temp!=0);
     temp->name = (char*)calloc(30,sizeof(char)); // ! NAME MIGHT HAVE ONLY 30 SYMBOLS AT ALL !
     assert(temp->name!=0);
 
@@ -36,11 +36,11 @@ void list_change(unit* unit1, unit* unit2)
 
 void list_sort(dlist_t* dlist)
 {
-    assert(dlist != 0);
+    assert(dlist!=0);
     unit* current = dlist->head;
-    assert(current != 0);
+    assert(current!=0);
 
-    while (current->next!=0 && strcmp(current->name,current->next->name) > 0)
+    while (current->next!=0 && strcmp(current->name,current->next->name)>0)
     {
             list_change(current,current->next);
             current = current->next;
@@ -50,12 +50,11 @@ void list_sort(dlist_t* dlist)
 
 void list_push(dlist_t* dlist, const char* data, int code)
 {
-    assert(dlist != 0);
-    assert(data != 0);
+    assert(dlist!=0);
     unit* record = (unit*)calloc(1,sizeof(unit));
-    assert(record != 0);
+    assert(record!=0);
     record->name = (char*)calloc(20,sizeof(char));
-    assert(record->name !=0 );
+    assert(record->name!=0);
 
     strcpy(record->name, data);
     record->source = code;
@@ -77,12 +76,11 @@ void list_push(dlist_t* dlist, const char* data, int code)
 
 int list_pop (dlist_t* dlist, const char* data)
 {
-    assert(dlist != 0);
-    assert(data != 0);
+    assert(dlist!=0);
     unit* current = dlist->head;
-    while (current !=  0)
+    while (current!=0)
     {
-        if (strcmp(current->name,data) == 0)
+        if (strcmp(current->name,data)==0)
         {
             if (current->next == 0 && current->prev == 0)
                 dlist->head = 0;
@@ -100,7 +98,7 @@ int list_pop (dlist_t* dlist, const char* data)
                         current->prev->next = current->next;
                     }
             dlist->ListSize--;
-            assert(dlist->ListSize >= 0);
+            assert(dlist->ListSize>=0);
 
             free(current->name);
             free(current);
@@ -114,7 +112,7 @@ int list_pop (dlist_t* dlist, const char* data)
 
 void list_print (dlist_t* dlist)
 {
-    assert(dlist != 0);
+    assert(dlist!=0);
     unit* current = dlist->head;
     do
     {
@@ -127,8 +125,7 @@ void list_print (dlist_t* dlist)
 
 int list_search(dlist_t* dlist, const char* data)
 {
-    assert(dlist != 0);
-    assert(data != 0);
+    assert(dlist!=0);
     unit* current = dlist->head;
     if (current == 0) return 0;
     do
@@ -136,14 +133,14 @@ int list_search(dlist_t* dlist, const char* data)
         if (strcmp(current->name, data) == 0) return current->source;
         current = current->next;
     }
-    while (current != 0);
+    while (current!=0);
     return 0;
 }
 
 void list_destroy(dlist_t* dlist)
 {
-    assert(dlist != 0);
-    while (dlist->head->next != 0)
+    assert(dlist!=0);
+    while (dlist->head->next!=0)
     {
         unit* temp = dlist->head;
         dlist->head = dlist->head->next;
